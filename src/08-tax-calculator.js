@@ -5,6 +5,7 @@
  * Help Sam by building a tax calculator that uses progressive tax brackets.
  *
  * How progressive tax works:
+ *
  *   You don't pay the same rate on ALL your income. Each "slice" of income
  *   is taxed at its own rate:
  *
@@ -26,21 +27,9 @@
  * @returns {number} Total tax amount owed
  */
 export function calculateTax(income) {
-  let tax = 0;
-
-  if (income > 70000) {
-    tax += (income - 70000) * 0.3;
-    income = 70000;
-  }
-
-  if (income > 30000) {
-    tax += (income - 30000) * 0.2;
-    income = 30000;
-  }
-
-  if (income > 10000) {
-    tax += (income - 10000) * 0.1;
-  }
-
-  return tax;
+  if (income <= 0) return 0;
+  if (income <= 10000) return 0;
+  else if (income <= 30000) return (income - 10000) * 0.1;
+  else if (income <= 70000) return (income - 30000) * 0.2 + 2000;
+  else if (income > 70000) return (income - 70000) * 0.3 + 2000 + 8000;
 }
